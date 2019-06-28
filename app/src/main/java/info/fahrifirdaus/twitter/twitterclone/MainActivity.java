@@ -7,10 +7,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import info.fahrifirdaus.twitter.twitterclone.fragments.DashboardFragment;
 import info.fahrifirdaus.twitter.twitterclone.fragments.FriendFragment;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements PostFormFragment.
     FragmentTransaction ft;
     BottomNavigationView navigation;
     FirebaseAuth fireAuth;
+    FirebaseUser fireUser;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,21 +59,49 @@ public class MainActivity extends AppCompatActivity implements PostFormFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fireAuth = FirebaseAuth.getInstance();
+//        Intent itLogin = getIntent();
+//        fireUser = (FirebaseUser) itLogin.getSerializableExtra("user");
 
-        if(fireAuth.getCurrentUser() == null){
-            Intent it = new Intent(this, LoginActivity.class);
-            it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(it);
-            finish();
+        fireAuth = FirebaseAuth.getInstance();
+        fireUser = fireAuth.getCurrentUser();
+
+        if(fireUser == null){
+            toLogin();
+        } else {
+            String email = fireUser.getEmail();
+            Toast.makeText(this, email, Toast.LENGTH_LONG).show();
         }
 
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_area, new DashboardFragment());
         ft.commit();
 
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void toLogin(){
+        Intent it = new Intent(this, LoginActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(it);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.logout){
+            fireAuth.signOut();
+            toLogin();
+        }
+
+        return true;
     }
 
     @Override
