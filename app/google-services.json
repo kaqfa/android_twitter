@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "336300178143",
+    "firebase_url": "https://fahrifirdausilllah-info.firebaseio.com",
+    "project_id": "fahrifirdausilllah-info",
+    "storage_bucket": "fahrifirdausilllah-info.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336300178143:android:05407c5820812fd7",
+        "android_client_info": {
+          "package_name": "info.fahrifirdaus.twitter.twitterclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336300178143-natcam8tpp9lfd919ffpu7ddpnc3pj1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.fahrifirdaus.twitter.twitterclone",
+            "certificate_hash": "bcde17bd278252a95a3a64ae96b448a7fca7279a"
+          }
+        },
+        {
+          "client_id": "336300178143-gos06a99v0iia3gflvnnj66nl9ahrlif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYv7Aq83CVe_TlvOSTKGmZBldlg7T2kmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336300178143-gos06a99v0iia3gflvnnj66nl9ahrlif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

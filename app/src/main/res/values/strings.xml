@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Twitter Clone</string>
+    <string name="title_home">Dashboard</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_post">Post Form</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Strings related to login -->
+</resources>
